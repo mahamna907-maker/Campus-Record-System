@@ -19,4 +19,40 @@ public class HashTableManager {
     public HashTableManager() {
         table = new HashNode[CAPACITY];
     }
+
+    private int hashFunction(String id) {
+    int hash = 0;
+
+    for (char c : id.toCharArray()) {
+        hash += c;
+    }
+
+    return Math.abs(hash) % CAPACITY;
+}
+private int hashFunction(String id) {
+    int hash = 0;
+
+    for (char c : id.toCharArray()) {
+        hash += c;
+    }
+
+    return Math.abs(hash) % CAPACITY;
+}
+public void insert(Student student) {
+    int index = hashFunction(student.getId());
+    HashNode newNode = new HashNode(student);
+
+    if (table[index] == null) {
+        table[index] = newNode;
+    } else {
+        HashNode temp = table[index];
+
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+
+        temp.next = newNode;
+    }
+}
+
 }
