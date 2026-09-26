@@ -52,7 +52,62 @@ public class Main {
             int choice = readInt(sc);
 
             switch (choice) {
-                // cases are added in the following commits
+
+                case 1:
+    System.out.print("Enter Student ID: ");
+    String id = sc.nextLine().trim();
+    System.out.print("Enter Name: ");
+    String name = sc.nextLine().trim();
+    System.out.print("Enter Programme: ");
+    String prog = sc.nextLine().trim();
+    System.out.print("Enter Marks (0-100): ");
+    double marks = readDouble(sc, 0, 100);
+
+    Student newStudent = new Student(id, name, prog, marks);
+    if (listManager.addStudent(newStudent)) {
+        bstManager.insert(newStudent);
+        hashManager.insert(newStudent);
+        actionStack.push("Added Student Record: ID " + id);
+        System.out.println("Student record added successfully.");
+    } else {
+        System.out.println("Error: Student ID already exists!");
+    }
+    break;
+
+case 2:
+    System.out.print("Enter Student ID to Update: ");
+    String uid = sc.nextLine().trim();
+    if (listManager.search(uid) == null) {
+        System.out.println("Error: Student record not found.");
+        break;
+    }
+    System.out.print("Enter New Name: ");
+    String uName = sc.nextLine().trim();
+    System.out.print("Enter New Programme: ");
+    String uProg = sc.nextLine().trim();
+    System.out.print("Enter New Marks (0-100): ");
+    double uMarks = readDouble(sc, 0, 100);
+
+    listManager.updateStudent(uid, uName, uProg, uMarks);
+    actionStack.push("Updated Student Record: ID " + uid);
+    System.out.println("Student updated successfully.");
+    break;
+
+case 3:
+    System.out.print("Enter Student ID to Delete: ");
+    String did = sc.nextLine().trim();
+    if (listManager.deleteStudent(did)) {
+        actionStack.push("Deleted Student Record: ID " + did);
+        System.out.println("Student record deleted from Linked List.");
+    } else {
+        System.out.println("Error: Student ID not found.");
+    }
+    break;
+
+case 4:
+    listManager.displayAll();
+    break;
+
             }
         }
     }
