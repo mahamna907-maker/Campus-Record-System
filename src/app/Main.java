@@ -108,6 +108,43 @@ case 4:
     listManager.displayAll();
     break;
 
+    case 5:
+    System.out.print("Enter Service Request Description: ");
+    String req = sc.nextLine().trim();
+    serviceQueue.enqueue(req);
+    actionStack.push("Enqueued Request: " + req);
+    System.out.println("Service request added to queue.");
+    break;
+
+case 6:
+    String processed = serviceQueue.dequeue();
+    if (processed != null) {
+        actionStack.push("Processed Request: " + processed);
+        System.out.println("Processed Request: " + processed);
+    } else {
+        System.out.println("Queue is empty. No requests to process.");
+    }
+    break;
+
+case 7:
+    actionStack.displayHistory();
+    break;
+
+case 8:
+    bstManager.displayInOrder();
+    break;
+
+case 9:
+    System.out.print("Enter Student ID to Search (HashTable): ");
+    String hid = sc.nextLine().trim();
+    Student found = hashManager.search(hid);
+    if (found != null) {
+        System.out.println("Found Record: " + found);
+    } else {
+        System.out.println("Record not found in Hash Table.");
+    }
+    break;
+
             }
         }
     }
