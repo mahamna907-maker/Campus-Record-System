@@ -17,4 +17,13 @@ public class ActionStack {
         newNode.next = top;
         top = newNode;
     }
+
+    public String pop() {
+    if (top == null) return null;
+
+    String action = top.action;
+    top = top.next;
+    return action;
+}
+
 }
