@@ -26,7 +26,9 @@ public class LinkedListManager {
         Node newNode = new Node(student);
 
         if (head == null) {
+
             head = newNode;
+
         } else {
 
             Node temp = head;
@@ -41,58 +43,104 @@ public class LinkedListManager {
         return true;
     }
 
-    public boolean updateStudent(
-        String id,
-        String newName,
-        String newProg,
-        double newMarks
-) {
+    public Student search(String id) {
 
-    Student s = search(id);
+        Node temp = head;
 
-    if (s != null) {
+        while (temp != null) {
 
-        s.setName(newName);
-        s.setProgramme(newProg);
-        s.setMarks(newMarks);
+            if (
+                temp.data.getId().equalsIgnoreCase(id)
+            ) {
+                return temp.data;
+            }
 
-        return true;
+            temp = temp.next;
+        }
+
+        return null;
     }
 
-    return false;
-}
+    public boolean updateStudent(
+            String id,
+            String newName,
+            String newProg,
+            double newMarks
+    ) {
 
-public boolean deleteStudent(String id) {
+        Student s = search(id);
 
-    if (head == null) {
+        if (s != null) {
+
+            s.setName(newName);
+            s.setProgramme(newProg);
+            s.setMarks(newMarks);
+
+            return true;
+        }
+
         return false;
     }
 
-    if (head.data.getId().equalsIgnoreCase(id)) {
-        head = head.next;
-        return true;
+    public boolean deleteStudent(String id) {
+
+        if (head == null) {
+            return false;
+        }
+
+        if (
+            head.data.getId().equalsIgnoreCase(id)
+        ) {
+
+            head = head.next;
+
+            return true;
+        }
+
+        Node current = head;
+        Node prev = null;
+
+        while (
+            current != null &&
+            !current.data.getId().equalsIgnoreCase(id)
+        ) {
+
+            prev = current;
+            current = current.next;
+        }
+
+        if (current != null) {
+
+            prev.next = current.next;
+
+            return true;
+        }
+
+        return false;
     }
 
-    Node current = head;
-    Node prev = null;
+    public void displayAll() {
 
-    while (
-        current != null &&
-        !current.data.getId().equalsIgnoreCase(id)
-    ) {
+        if (head == null) {
 
-        prev = current;
-        current = current.next;
+            System.out.println(
+                "No records found in Linked List."
+            );
+
+            return;
+        }
+
+        Node temp = head;
+
+        System.out.println(
+            "\n--- All Student Records (Linked List) ---"
+        );
+
+        while (temp != null) {
+
+            System.out.println(temp.data);
+
+            temp = temp.next;
+        }
     }
-
-    if (current != null) {
-        prev.next = current.next;
-        return true;
-    }
-
-    return false;
-}
-
-
-
 }
