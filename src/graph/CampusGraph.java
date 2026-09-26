@@ -28,5 +28,46 @@ public class CampusGraph {
 
     return true;
 }
+public boolean addConnection(String loc1, String loc2) {
+    String u = loc1.trim().toUpperCase();
+    String v = loc2.trim().toUpperCase();
+
+    if (!adjList.containsKey(u) || !adjList.containsKey(v)) {
+        return false;
+    }
+
+    if (!adjList.get(u).contains(v)) {
+        adjList.get(u).add(v);
+        adjList.get(v).add(u);
+        return true;
+    }
+
+    return false;
+}
+
+public boolean removeConnection(String loc1, String loc2) {
+    String u = loc1.trim().toUpperCase();
+    String v = loc2.trim().toUpperCase();
+
+    if (adjList.containsKey(u) && adjList.containsKey(v)) {
+        boolean r1 = adjList.get(u).remove(v);
+        boolean r2 = adjList.get(v).remove(u);
+        return r1 || r2;
+    }
+
+    return false;
+}
+
+public void displayGraph() {
+    if (adjList.isEmpty()) {
+        System.out.println("Campus graph is empty.");
+        return;
+    }
+
+    System.out.println("\n--- Campus Connections Network ---");
+    for (String loc : adjList.keySet()) {
+        System.out.println(loc + " -> " + adjList.get(loc));
+    }
+}
 
 }
