@@ -24,5 +24,21 @@ public class BSTManager {
             return new BSTNode(student);
         }
         return root;
+
+
     }
+    private BSTNode insertRec(BSTNode root, Student student) {
+    if (root == null) {
+        return new BSTNode(student);
+    }
+
+    if (student.getId().compareToIgnoreCase(root.data.getId()) < 0) {
+        root.left = insertRec(root.left, student);
+    } else if (student.getId().compareToIgnoreCase(root.data.getId()) > 0) {
+        root.right = insertRec(root.right, student);
+    }
+
+    return root;
+}
+
 }
