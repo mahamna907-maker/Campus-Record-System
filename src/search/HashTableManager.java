@@ -21,52 +21,36 @@ public class HashTableManager {
     }
 
     private int hashFunction(String id) {
-    int hash = 0;
-
-    for (char c : id.toCharArray()) {
-        hash += c;
+        int hash = 0;
+        for (char c : id.toCharArray()) {
+            hash += c;
+        }
+        return Math.abs(hash) % CAPACITY;
     }
 
-    return Math.abs(hash) % CAPACITY;
-}
-private int hashFunction(String id) {
-    int hash = 0;
-
-    for (char c : id.toCharArray()) {
-        hash += c;
+    public void insert(Student student) {
+        int index = hashFunction(student.getId());
+        HashNode newNode = new HashNode(student);
+        if (table[index] == null) {
+            table[index] = newNode;
+        } else {
+            HashNode temp = table[index];
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
     }
 
-    return Math.abs(hash) % CAPACITY;
-}
-public void insert(Student student) {
-    int index = hashFunction(student.getId());
-    HashNode newNode = new HashNode(student);
-
-    if (table[index] == null) {
-        table[index] = newNode;
-    } else {
+    public Student search(String id) {
+        int index = hashFunction(id);
         HashNode temp = table[index];
-
-        while (temp.next != null) {
+        while (temp != null) {
+            if (temp.student.getId().equalsIgnoreCase(id)) {
+                return temp.student;
+            }
             temp = temp.next;
         }
-
-        temp.next = newNode;
+        return null;
     }
-}
-public Student search(String id) {
-    int index = hashFunction(id);
-    HashNode temp = table[index];
-
-    while (temp != null) {
-        if (temp.student.getId().equalsIgnoreCase(id)) {
-            return temp.student;
-        }
-
-        temp = temp.next;
-    }
-
-    return null;
-}
-
 }
