@@ -40,5 +40,22 @@ public class BSTManager {
 
     return root;
 }
+public void displayInOrder() {
+    if (root == null) {
+        System.out.println("BST is empty.");
+        return;
+    }
+
+    System.out.println("\n--- Student Records In-Order (BST) ---");
+    inOrderRec(root);
+}
+
+private void inOrderRec(BSTNode root) {
+    if (root != null) {
+        inOrderRec(root.left);
+        System.out.println(root.data);
+        inOrderRec(root.right);
+    }
+}
 
 }
