@@ -19,28 +19,24 @@ public class ActionStack {
     }
 
     public String pop() {
-    if (top == null) return null;
-
-    String action = top.action;
-    top = top.next;
-    return action;
-}
+        if (top == null) return null;
+        String action = top.action;
+        top = top.next;
+        return action;
+    }
 
     public void displayHistory() {
-    if (top == null) {
-        System.out.println("No recent actions logged.");
-        return;
+        if (top == null) {
+            System.out.println("No recent actions logged.");
+            return;
+        }
+        System.out.println("\n--- Recent Action History (Stack) ---");
+        Node temp = top;
+        int count = 1;
+        while (temp != null) {
+            System.out.println(count + ". " + temp.action);
+            temp = temp.next;
+            count++;
+        }
     }
-
-    System.out.println("\n--- Recent Action History (Stack) ---");
-    Node temp = top;
-    int count = 1;
-
-    while (temp != null) {
-        System.out.println(count + ". " + temp.action);
-        temp = temp.next;
-        count++;
-    }
-}
-
 }
