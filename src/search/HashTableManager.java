@@ -54,5 +54,19 @@ public void insert(Student student) {
         temp.next = newNode;
     }
 }
+public Student search(String id) {
+    int index = hashFunction(id);
+    HashNode temp = table[index];
+
+    while (temp != null) {
+        if (temp.student.getId().equalsIgnoreCase(id)) {
+            return temp.student;
+        }
+
+        temp = temp.next;
+    }
+
+    return null;
+}
 
 }
