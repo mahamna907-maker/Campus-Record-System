@@ -16,14 +16,23 @@ public class ServiceQueue {
 
     public void enqueue(String request) {
         Node newNode = new Node(request);
-
         if (rear == null) {
             front = rear = newNode;
             return;
         }
-
         rear.next = newNode;
         rear = newNode;
     }
-    
+
+    public String dequeue() {
+        if (front == null) return null;
+        String request = front.request;
+        front = front.next;
+        if (front == null) rear = null;
+        return request;
+    }
+
+    public boolean isEmpty() {
+        return front == null;
+    }
 }
