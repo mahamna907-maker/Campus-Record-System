@@ -99,5 +99,29 @@ public void bfsTraversal(String startLocation) {
 
     System.out.println();
 }
+public void dfsTraversal(String startLocation) {
+    String start = startLocation.trim().toUpperCase();
+
+    if (!adjList.containsKey(start)) {
+        System.out.println("Error: Location does not exist in graph.");
+        return;
+    }
+
+    Set<String> visited = new HashSet<>();
+    System.out.print("\nDFS Traversal from " + start + ": ");
+    dfsHelper(start, visited);
+    System.out.println();
+}
+
+private void dfsHelper(String loc, Set<String> visited) {
+    visited.add(loc);
+    System.out.print(loc + " ");
+
+    for (String neighbor : adjList.get(loc)) {
+        if (!visited.contains(neighbor)) {
+            dfsHelper(neighbor, visited);
+        }
+    }
+}
 
 }
