@@ -13,4 +13,20 @@ public class CampusGraph {
         adjList.put(loc, new ArrayList<>());
         return true;
     }
+
+    public boolean removeLocation(String location) {
+    String loc = location.trim().toUpperCase();
+    if (!adjList.containsKey(loc)) {
+        return false;
+    }
+
+    adjList.remove(loc);
+
+    for (List<String> neighbors : adjList.values()) {
+        neighbors.remove(loc);
+    }
+
+    return true;
+}
+
 }
