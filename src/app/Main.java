@@ -145,6 +145,80 @@ case 9:
     }
     break;
 
+    case 10:
+    System.out.print("Enter Campus Location Name: ");
+    String loc = sc.nextLine().trim();
+    if (campusGraph.addLocation(loc)) {
+        actionStack.push("Added Location: " + loc.toUpperCase());
+        System.out.println("Location added successfully.");
+    } else {
+        System.out.println("Error: Location already exists.");
+    }
+    break;
+
+case 11:
+    System.out.print("Enter Campus Location Name to Remove: ");
+    String rloc = sc.nextLine().trim();
+    if (campusGraph.removeLocation(rloc)) {
+        actionStack.push("Removed Location: " + rloc.toUpperCase());
+        System.out.println("Location removed successfully.");
+    } else {
+        System.out.println("Error: Location not found.");
+    }
+    break;
+
+case 12:
+    System.out.print("Enter Start Location: ");
+    String l1 = sc.nextLine().trim();
+    System.out.print("Enter End Location: ");
+    String l2 = sc.nextLine().trim();
+    if (campusGraph.addConnection(l1, l2)) {
+        actionStack.push("Added Connection: " + l1.toUpperCase() + " <-> " + l2.toUpperCase());
+        System.out.println("Connection added successfully.");
+    } else {
+        System.out.println("Error: Could not add connection (check location names or duplicates).");
+    }
+    break;
+
+case 13:
+    System.out.print("Enter Start Location: ");
+    String rl1 = sc.nextLine().trim();
+    System.out.print("Enter End Location: ");
+    String rl2 = sc.nextLine().trim();
+    if (campusGraph.removeConnection(rl1, rl2)) {
+        actionStack.push("Removed Connection: " + rl1.toUpperCase() + " <-> " + rl2.toUpperCase());
+        System.out.println("Connection removed successfully.");
+    } else {
+        System.out.println("Error: Connection does not exist.");
+    }
+    break;
+
+case 14:
+    campusGraph.displayGraph();
+    break;
+
+case 15:
+    System.out.print("Enter Start Location for Traversal: ");
+    String tLoc = sc.nextLine().trim();
+    System.out.print("Choose Algorithm (1 for BFS, 2 for DFS): ");
+    int alg = readInt(sc);
+    if (alg == 1) {
+        campusGraph.bfsTraversal(tLoc);
+    } else if (alg == 2) {
+        campusGraph.dfsTraversal(tLoc);
+    } else {
+        System.out.println("Invalid algorithm selection.");
+    }
+    break;
+
+case 16:
+    System.out.println("Exiting System. Goodbye!");
+    sc.close();
+    return;
+
+default:
+    System.out.println("Invalid option! Please enter a number between 1 and 16.");
+
             }
         }
     }
