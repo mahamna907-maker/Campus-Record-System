@@ -41,19 +41,58 @@ public class LinkedListManager {
         return true;
     }
 
-    public Student search(String id) {
+    public boolean updateStudent(
+        String id,
+        String newName,
+        String newProg,
+        double newMarks
+) {
 
-        Node temp = head;
+    Student s = search(id);
 
-        while (temp != null) {
+    if (s != null) {
 
-            if (temp.data.getId().equalsIgnoreCase(id)) {
-                return temp.data;
-            }
+        s.setName(newName);
+        s.setProgramme(newProg);
+        s.setMarks(newMarks);
 
-            temp = temp.next;
-        }
-
-        return null;
+        return true;
     }
+
+    return false;
+}
+
+public boolean deleteStudent(String id) {
+
+    if (head == null) {
+        return false;
+    }
+
+    if (head.data.getId().equalsIgnoreCase(id)) {
+        head = head.next;
+        return true;
+    }
+
+    Node current = head;
+    Node prev = null;
+
+    while (
+        current != null &&
+        !current.data.getId().equalsIgnoreCase(id)
+    ) {
+
+        prev = current;
+        current = current.next;
+    }
+
+    if (current != null) {
+        prev.next = current.next;
+        return true;
+    }
+
+    return false;
+}
+
+
+
 }
