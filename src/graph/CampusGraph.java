@@ -69,5 +69,35 @@ public void displayGraph() {
         System.out.println(loc + " -> " + adjList.get(loc));
     }
 }
+public void bfsTraversal(String startLocation) {
+    String start = startLocation.trim().toUpperCase();
+
+    if (!adjList.containsKey(start)) {
+        System.out.println("Error: Location does not exist in graph.");
+        return;
+    }
+
+    Set<String> visited = new HashSet<>();
+    Queue<String> queue = new LinkedList<>();
+
+    visited.add(start);
+    queue.add(start);
+
+    System.out.print("\nBFS Traversal from " + start + ": ");
+
+    while (!queue.isEmpty()) {
+        String curr = queue.poll();
+        System.out.print(curr + " ");
+
+        for (String neighbor : adjList.get(curr)) {
+            if (!visited.contains(neighbor)) {
+                visited.add(neighbor);
+                queue.add(neighbor);
+            }
+        }
+    }
+
+    System.out.println();
+}
 
 }
