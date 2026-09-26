@@ -23,39 +23,28 @@ public class BSTManager {
         if (root == null) {
             return new BSTNode(student);
         }
+        if (student.getId().compareToIgnoreCase(root.data.getId()) < 0) {
+            root.left = insertRec(root.left, student);
+        } else if (student.getId().compareToIgnoreCase(root.data.getId()) > 0) {
+            root.right = insertRec(root.right, student);
+        }
         return root;
-
-
-    }
-    private BSTNode insertRec(BSTNode root, Student student) {
-    if (root == null) {
-        return new BSTNode(student);
     }
 
-    if (student.getId().compareToIgnoreCase(root.data.getId()) < 0) {
-        root.left = insertRec(root.left, student);
-    } else if (student.getId().compareToIgnoreCase(root.data.getId()) > 0) {
-        root.right = insertRec(root.right, student);
+    public void displayInOrder() {
+        if (root == null) {
+            System.out.println("BST is empty.");
+            return;
+        }
+        System.out.println("\n--- Student Records In-Order (BST) ---");
+        inOrderRec(root);
     }
 
-    return root;
-}
-public void displayInOrder() {
-    if (root == null) {
-        System.out.println("BST is empty.");
-        return;
+    private void inOrderRec(BSTNode root) {
+        if (root != null) {
+            inOrderRec(root.left);
+            System.out.println(root.data);
+            inOrderRec(root.right);
+        }
     }
-
-    System.out.println("\n--- Student Records In-Order (BST) ---");
-    inOrderRec(root);
-}
-
-private void inOrderRec(BSTNode root) {
-    if (root != null) {
-        inOrderRec(root.left);
-        System.out.println(root.data);
-        inOrderRec(root.right);
-    }
-}
-
 }
