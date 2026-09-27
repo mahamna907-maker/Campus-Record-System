@@ -1,4 +1,4 @@
-# CampusRecordSystem
+# Campus-Record-System
 
 A Java console application that demonstrates core data structures through a university student record and campus route system.
 
@@ -15,6 +15,7 @@ A Java console application that demonstrates core data structures through a univ
 
 ## Project Structure
 
+```
 CampusRecordSystem/
 ├── bin/
 ├── lib/
@@ -33,6 +34,7 @@ CampusRecordSystem/
 │       ├── BSTManager.java
 │       └── HashTableManager.java
 └── README.md
+```
 
 ## Compile
 
@@ -40,11 +42,15 @@ From the project root, compile the source files into bin.
 
 Windows Command Prompt example:
 
+```
 javac -d bin src\model\Student.java src\records\LinkedListManager.java src\records\ActionStack.java src\records\ServiceQueue.java src\search\BSTManager.java src\search\HashTableManager.java src\graph\CampusGraph.java src\app\Main.java
+```
 
 ## Run
 
+```
 java -cp bin app.Main
+```
 
 ## Data Structures Used
 
@@ -57,7 +63,7 @@ java -cp bin app.Main
 
 ## Team Contribution
 
-- Member 1: Student model and linked list
-- Member 2: Stack and queue
-- Member 3: BST and hash table
-- Member 4: Campus graph, Main integration, documentation, and final testing
+- AUF. Minaal - 23DA2-0892: Student model and linked list
+- T. Santhiya - 23DA2-1053: Stack and queue
+- SF. Hamtha - 23DA2-0499: BST and hash table
+- MA. Hamna - 23DA2-0508: Campus graph, Main integration, documentation, and final testing
